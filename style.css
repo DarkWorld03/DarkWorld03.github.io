@@ -53,10 +53,31 @@ animation: mover 3s infinite;
 
 
   /* Tabla */
+  @keyframes chispa {
+    0% {
+        border-image-source: linear-gradient(0deg, red, yellow, orange);
+    }
+    25% {
+        border-image-source: linear-gradient(90deg, yellow, orange, red);
+    }
+    50% {
+        border-image-source: linear-gradient(180deg, orange, red, yellow);
+    }
+    75% {
+        border-image-source: linear-gradient(270deg, red, yellow, orange);
+    }
+    100% {
+        border-image-source: linear-gradient(360deg, yellow, orange, red);
+    }
+}
+  
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 40px;
+    margin: 0 auto;
+    display: table;
+    border: 5px solid transparent;
+    border-image: linear-gradient(0deg, red, yellow, orange);
+    border-image-slice: 1;
+    animation: chispa 3s infinite linear;
   }
   table caption {
     font-size: 1.8em;
