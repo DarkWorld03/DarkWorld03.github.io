@@ -1,22 +1,22 @@
 const express = require("express");
-const cors = require("cors"); // Importar CORS
+const cors = require("cors"); 
 const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000; // Usando el puerto detectado por Render
 
-// Permitir CORS desde GitHub Pages
+// Configuración de CORS para permitir solicitudes desde GitHub Pages
 app.use(cors({
     origin: "https://darkworld03.github.io",
-    methods: ["POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"]
 }));
 
-app.use(express.json()); // Permite recibir JSON
+app.use(express.json()); 
 app.use(express.static(path.join(__dirname, "public")));
 
-// Ruta para guardar los datos
+// Ruta para guardar los datos y permitir la descarga
 app.post("/guardar", (req, res) => {
     const { nickname, nombre, email, rol, medalla, edad } = req.body;
 
@@ -32,11 +32,14 @@ app.post("/guardar", (req, res) => {
             console.error("Error al escribir:", err);
             return res.status(500).json({ mensaje: "Error al guardar los datos." });
         }
-        res.json({ mensaje: "Datos guardados correctamente." });
+
+        // Enviar el archivo `.txt` al cliente para descargarlo
+        res.setHeader("Content-Disposition", "attachment; filename=registros.txt");
+        res.setHeader("Content-Type", "text/plain");
+        res.send(contenido);
     });
 });
 
-// Ruta de prueba
 app.get("/", (req, res) => {
     res.send("🚀 Servidor en Render funcionando correctamente");
 });
@@ -44,6 +47,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
 
 
 
