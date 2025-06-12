@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+// Definir el puerto dinámico para Render
+const PORT = process.env.PORT || 3000;
+
 // Permite recibir JSON en los request
 app.use(express.json());
 
@@ -30,9 +33,14 @@ app.post('/guardar', (req, res) => {
   });
 });
 
+// Ruta de prueba para confirmar que el servidor está activo
+app.get("/", (req, res) => {
+  res.send("🚀 Servidor en Render funcionando correctamente");
+});
+
 // Inicia el servidor
-app.listen(3000, () => {
-  console.log('Servidor corriendo en http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
 
