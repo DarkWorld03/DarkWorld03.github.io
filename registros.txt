@@ -1,0 +1,2 @@
+Nickname: 134, Nombre: 1234, Email: sdsadas@gmil.com, Rol: Support, Medalla: Guardián, Edad: 21
+Nickname: qwerq, Nombre: qwerqwer, Email: sdsadas@gmil.com, Rol: Support, Medalla: Heraldo, Edad: 21
