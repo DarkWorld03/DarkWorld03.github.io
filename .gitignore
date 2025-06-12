@@ -10,3 +10,5 @@ npm-debug.log*
 
 # Archivos del sistema
 Thumbs.db
+
+token.txt
